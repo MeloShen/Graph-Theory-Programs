@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Hamiltonian {
     public static void main(String[] args) {
+
         // List of graph edges as per the above diagram
         // it need to put all the vertex
         List<Edge> edges = Arrays.asList(

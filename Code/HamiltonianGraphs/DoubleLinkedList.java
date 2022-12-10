@@ -2,6 +2,7 @@ package Code.HamiltonianGraphs;
 
 public class DoubleLinkedList<T> {
     private Node<T> head;
+
     private Node<T> tail;
 
     //this is the Constructor of the double linked list

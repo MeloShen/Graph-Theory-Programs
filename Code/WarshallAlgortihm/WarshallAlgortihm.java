@@ -17,10 +17,9 @@ public class WarshallAlgortihm {
         // total number of edges in the graph
         int vertex = 7;
         //use for the start point in the findMatrix function
-        int n = vertex;
         // construct graph
         WarshallGraph graph = new WarshallGraph(edges, vertex);
-        warshallAlgortihm(graph,vertex,n);
+        warshallAlgortihm(graph,vertex, vertex);
     }
     //This method is used to print the matrix in the graph
     public static void printMatrix(WarshallGraph graph,int vertex){
@@ -45,14 +44,14 @@ public class WarshallAlgortihm {
             }
             return;
         }
-        int Matrix[][] = findMatrix(graph,vertex,n);
+        int[][] Matrix = findMatrix(graph,vertex,n);
         WarshallGraph newGraph = orGate(graph,Matrix,vertex);
         n--;
         warshallAlgortihm(newGraph,vertex,n);
     }
     //find the matrix use for the function
     public static int[][] findMatrix(WarshallGraph graph,int vertex, int n){
-        int array[][] = new int[vertex][vertex];
+        int[][] array = new int[vertex][vertex];
         for (int x = 0; x < vertex; x++){
             if (graph.array[x][vertex-n] == 0){
                 for (int y = 0; y < vertex; y++){
@@ -60,9 +59,7 @@ public class WarshallAlgortihm {
                 }
             }
             else {
-                for (int y = 0; y < vertex; y++){
-                    array[x][y] = graph.array[vertex-n][y];
-                }
+                System.arraycopy(graph.array[vertex - n], 0, array[x], 0, vertex);
             }
         }
         return array;
@@ -88,7 +85,7 @@ public class WarshallAlgortihm {
 }
 
 class WarshallGraph{
-    int array[][];
+    int[][] array;
     // A list of lists to represent an array
     // Constructor
     WarshallGraph(List<WarshallEdge> edges, int n)
