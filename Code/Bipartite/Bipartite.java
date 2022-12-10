@@ -5,7 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Bipartite {
-    public static void main(String[] args) throws Exception {
+
+    public static void main(String[] args) {
 //        List<Edge> edges = Arrays.asList(
 //                new Edge(0, 2), new Edge(0, 3),
 //                new Edge(1, 3), new Edge(1, 4),
@@ -37,15 +38,14 @@ public class Bipartite {
 //        int n = 7;
         // construct graph
         bipartiteGarph graph = new bipartiteGarph(edges, n);
-        bipartiteGarph changeGraph = graph;
         graph.print();
         boolean[] visited = new boolean[graph.vertex];
-        if(isConnected(graph,0,visited) == false){
+        if(!isConnected(graph, 0, visited)){
             System.out.println("This graph is not connect, so is not bipartite.");
         }
         else {
             try{
-                coloring(graph,changeGraph,0,0);
+                coloring(graph, graph,0,0);
                 System.out.println("This graph is bipartite");
             }catch (Exception e){
                 System.out.println("Graph is not bipartite");
@@ -121,18 +121,17 @@ public class Bipartite {
         //look for the vertex link to current vertex
         List<Integer> nextVertex = new ArrayList<>();
         for (int y = 0; y < graph.vertex; y++) {
-            if (graph.matrix[currentVertex][y] == 1) ;
             nextVertex.add(y);
         }
         //travle all adjacent vertex
-        for (int y = 0; y < nextVertex.size(); y++) {
-            if (!visited[nextVertex.get(y)]) {
-                isConnected(graph, nextVertex.get(y), visited);
+        for (Integer vertex : nextVertex) {
+            if (!visited[vertex]) {
+                isConnected(graph, vertex, visited);
             }
         }
         //check the list if still have false then the graph is not connect
-        for (int z = 0; z < visited.length; z++) {
-            if (visited[z] == false) {
+        for (boolean b : visited) {
+            if (!b) {
                 return false;
             }
         }
