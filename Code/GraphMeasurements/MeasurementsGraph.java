@@ -40,7 +40,6 @@ public class MeasurementsGraph {
                 new Edge(9,3),new Edge(9,4),new Edge(9,5),new Edge(9,8)
         );
         int vertex = 10;
-
         Graph graph = new Graph(edges,vertex);
         graph.printMatrix();
         findAllPath(graph,0);
