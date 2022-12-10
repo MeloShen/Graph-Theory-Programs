@@ -1,4 +1,7 @@
+package Code.Admissable;
+
 public class Admissable {
+
     //input the ordered sequence
     public static void main(String[] args) {
         System.out.println("This is the first set:");
@@ -45,9 +48,7 @@ public class Admissable {
     //this method is to remove the first item in the array and let the rest item reduce 1
     public static int[] reduce(int[] sequence) {
         int[] reduceSequence = new int[sequence.length - 1];
-        for (int x = 1; x < sequence.length; x++) {
-            reduceSequence[x - 1] = sequence[x];
-        }
+        System.arraycopy(sequence, 1, reduceSequence, 0, sequence.length - 1);
         for (int y = 0; y < sequence[0]; y++) {
             reduceSequence[y]--;
         }
@@ -61,7 +62,7 @@ public class Admissable {
         return true;
     }
     //use the Bubble Sort to reorder the sequence let the sequence form big to small
-    public static int[] reOrder(int[] sequence) {
+    public static void reOrder(int[] sequence) {
         for (int i = 0; i < sequence.length - 1; i++) {
             for (int j = 0; j < sequence.length - 1 - i; j++) {
                 if (sequence[j + 1] > sequence[j]) {
@@ -71,6 +72,5 @@ public class Admissable {
                 }
             }
         }
-        return sequence;
     }
 }
