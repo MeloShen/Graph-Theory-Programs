@@ -1,3 +1,5 @@
+package Code.EulerianGraph;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -49,17 +51,18 @@ public class Eulerian {
         //mark the current as true visited
         visited[currentVertex] = true;
         //look for the vertex link to current vertex
-        List<Integer> nextVertex = new ArrayList<>();
-        for (int x = 0; x < graph.adjList.get(currentVertex).size();x++){
-            nextVertex.add(graph.adjList.get(currentVertex).get(x));
-        }
+        List<Integer> nextVertex = new ArrayList<>(graph.adjList.get(currentVertex));
         //travle all adjacent vertex
-        for (int y = 0; y < nextVertex.size();y++){
-            if(!visited[nextVertex.get(y)]){isConnected(graph,nextVertex.get(y),visited);}
+        for (Integer vertex : nextVertex) {
+            if (!visited[vertex]) {
+                isConnected(graph, vertex, visited);
+            }
         }
         //check the list if still have false then the graph is not connect
-        for (int z = 0; z < visited.length;z++){
-            if (visited[z] == false){return false;}
+        for (boolean b : visited) {
+            if (!b) {
+                return false;
+            }
         }
         return true;
     }
@@ -138,7 +141,7 @@ public class Eulerian {
 }
 class EulerianGraph{
     // A list of lists to represent an adjacency list
-    List<List<Integer>> adjList = null;
+    List<List<Integer>> adjList;
     // Constructor
     EulerianGraph(List<Edge> edges, int n)
     {
