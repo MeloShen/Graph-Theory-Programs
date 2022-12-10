@@ -1,0 +1,114 @@
+    The knapsack problem is a problem in combinatorial optimization. Given a set of items, each with a weight and a
+value, the problem is to determine the number of each item included in a collection so that the total weight is less
+than or equal to a given limit and the total value is as large as possible. It derives its name from the problem faced
+by someone who is constrained by a fixed-size knapsack and must fill it with the most valuable items. The problem often
+arises in resource allocation where the decision-makers must choose from a set of non-divisible projects or tasks under
+a fixed budget or time constraint, respectively. (Knapsack problem, 2022)
+    There are multiple ways to solve this problem. However, I believe dynamic programming is the easiest way among all
+of them.
+
+    Assume we have some items, and each item has weight and value, put these items in a knapsack of capacity to get the
+maximum total value. The sum of the weights of this subset is smaller than or equal to W. You cannot break an item.
+Either pick the complete item or don’t pick it.
+
+   Assume we have a problem:
+        WEIGHT: W = {3,4,5,6}
+        VALUE:  V = {2,6,4,6}
+        CAPACITY = 8
+        ITEM = 4
+
+    For this easy example we can know there are three solutions: First is chosen weight 3 with value 2 and weight 5 with
+value 4 total value is 6. Second is chosen weight 3 with value 2 and weight 4 and weight 4 with value 6 total value
+is 8. Third is chosen weight 6 with value 6, total value is 6. Obviously second solution is the best. But how can we
+solve this problem by using dynamic programming.
+
+  When using dynamic programming to analyse the knapsack problem, we need to consider how many bags there are and the remaining weight that the bag can store.
+
+   If the call to B[i][j] is by selecting the largest possible value in the bag {1, 2, ..., i} with weight limit j. The maximum value is B[n][M] when selected among n packs with a weight limit of M. In other words: when there are i packages to choose from, B[i][j] is the optimal weight for a backpack with a maximum weight of j. The optimal weight is always less than or equal to the maximum weight: B[i][j] ≤ j. (Martin, 2022)
+  For the B[i][j] has these selections:
+In the case of simply having only 1 package to choose. You calculate B[1][j] for every j: which means the maximum weight of the knapsack ≥ the weight of the 1st package
+
+B[1][j] = W[1]
+
+If package i is not selected, B[i][j] is the maximum possible value by selecting among packages {1, 2, …, i – 1} with weight limit of j. You have:
+
+            B[i][j] = B[i – 1][j]
+
+If package i is selected (of course only consider this case when W[i] ≤ j) then B[i][j] is equal to the value V[i] of package i plus the maximum value can be obtained by selecting among packages {1, 2, …, i – 1} with weight limit (j – W[i]). That is, in terms of the value you have:
+
+            B[i][j] = V[i] + B[i – 1][j – W[i]]
+
+Now we have the recursive formula as follows:
+
+	B[i][j]= max(B[i – 1][j], V[i]+B[i – 1][j – W[i]]
+
+  Build an option table from the above recursive formula. First, fill in the base of the dynamic programming: row 0 includes all zeros, then use a recursive formula, use row 0 to calculate row 1, use row 1 to calculate row 2, and so on... until all rows are calculated.
+
+  From above we can get first line with all zero and column 0,1,2 with all zero as well (smaller than the min weight).
+	0	1	2	3	4	5	6	7	8
+0	0	0	0	0	0	0	0	0	0
+1	0	0	0
+2	0	0	0
+3	0	0	0
+4	0	0	0
+
+ When I = 1 b[1][3] = v[2] + b[1-1][3-w[1]] = 2;b[1][4] = v[2] + b[1-1][4-w[1]] = 2; same for others.
+	0	1	2	3	4	5	6	7	8
+0	0	0	0	0	0	0	0	0	0
+1	0	0	0	2	2	2	2	2	2
+2	0	0	0
+3	0	0	0
+4	0	0	0
+
+ When I = 2 b[2][3] = max(b[2-1][3],v[2]+b[2-1][3-v[2]])=max(b[1][3],v[6]+b[2][-3]) in this case we can know the b[2][-3] can exist in the table, and because wen I = 2 v[2] = 6 is bigger then 3 so when j = 3 all the column it must be 2.
+	0	1	2	3	4	5	6	7	8
+0	0	0	0	0	0	0	0	0	0
+1	0	0	0	2	2	2	2	2	2
+2	0	0	0	2
+3	0	0	0	2
+4	0	0	0	2
+For b[2][4]=max(b[2-1][4],v[2]+b[2-1][4-v[2]])=max(b[1][4],6+b[1][0])=max(2,6)=6
+      b[2][5]=max(b[2-1][5],v[2]+b[2-1][5-v[2]])=max(b[1][4],6+b[1][1])=max(2,6)=6
+      b[2][6]=max(b[2-1][5],v[2]+b[2-1][6-v[2]])=max(b[1][4],6+b[1][2])=max(2,6)=6
+      b[2][7]=max(b[2-1][8],v[2]+b[2-1][7-v[2]])=max(b[1][4],6+b[1][3])=max(2,8)=8
+      b[2][8]=max(b[2-1][8],v[2]+b[2-1][8-v[2]])=max(b[1][4],6+b[1][4])=max(2,8)=8
+	0	1	2	3	4	5	6	7	8
+0	0	0	0	0	0	0	0	0	0
+1	0	0	0	2	2	2	2	2	2
+2	0	0	0	2	6	6	6	8	8
+3	0	0	0	2
+4	0	0	0	2
+  Now it need to use the recursive formula complete the full table:
+	0	1	2	3	4	5	6	7	8
+0	0	0	0	0	0	0	0	0	0
+1	0	0	0	2	2	2	2	2	2
+2	0	0	0	2	6	6	6	8	8
+3	0	0	0	2	6	6	6	8	8
+4	0	0	0	2	6	6	6	8	8
+  Form the table we can get the max weight from the last column and last row of the table. Next is find the items we can carry. (Martin, 2022)
+Steps for tracing:
+1.	Starting from i = n, j = M
+2.	Look in column j, up from bottom, you find the line i such that B[i][j] > B[i – 1][j]
+3.	j = B[i][j] – W[i]. If j > 0, go to step 2, otherwise go to step 4
+  Based on the table of options to print the selected packages. In the given case we can get I = 4 j =8, m[4][8] = 8, then based on step 2 we can get b[2][8] > b[2-1][8], so I =2. From step 3 we can get j = b[2][8] - w[2] = 8 – 4 = 4. The item is weight 4 with value 6. Now the I = 2 and j = 4. Next do the step 2 b[1][4] > b[0][4], I = 1, j = b[1][4] – w[1] = 2 – 2 = 0, the item is weight 3 with value 2.
+
+  Item 1 weight 3, value 2, Item 2 weight 4 value 6, total weight is 7, total value is 8.
+
+   Allow me to raise a simple example of the Knapsack problem. In the COMPX546 assignment, we are required to choose 20 marks from the proofs and algorithms. As the difficulty and the mark of each question are different, it is easier to struggle on picking which question to finish.
+
+  For the simple question we can put the time for each question for the weight and for the mark is the value. Depend on that we can choose what we what we want to choose.
+
+  In the real world the Merkle–Hellman knapsack cryptosystem was based on the  subset sum problem (a special case of the knapsack problem).  It was published by Ralph Merkle and Martin Hellman in 1978. This cryptosystem is solvable in polynomial time with a simple greedy algorithm. (Merkle–Hellman knapsack cryptosystem, 2021)
+
+  The complexity of knapsack problem by suing the dynamic programming is O(N*W) where N denotes number of items available and W denotes the capacity of the knapsack. (Merkle–Hellman knapsack cryptosystem, 2021). Because we are using all item to repeat to complete the n’s table.
+
+
+References
+0-1 Knapsack Problem. (2021, 11 09). Retrieved from InterviewBit: https://www.interviewbit.com/blog/0-1-knapsack-problem/
+Knapsack problem. (2022, 05 18). Retrieved from Wikipedia: https://en.wikipedia.org/wiki/Knapsack_problem
+Martin, M. (2022, 06 04). 0/1 Knapsack Problem Fix using Dynamic Programming Example. Retrieved from https://www.guru99.com/knapsack-problem-dynamic-programming.html
+Merkle–Hellman knapsack cryptosystem. (2021, 12 15). Retrieved from Wikipedia: https://en.wikipedia.org/wiki/Merkle%E2%80%93Hellman_knapsack_cryptosystem
+
+
+
+
