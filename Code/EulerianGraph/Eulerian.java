@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class EulerianGraph {
+public class Eulerian {
     public static void main(String[] args)
     {
         // List of graph edges as per the above diagram
@@ -17,7 +17,7 @@ public class EulerianGraph {
         // total number of edges in the graph
         int n = 5;
         // construct graph
-        Graph graph = new Graph(edges, n);
+        EulerianGraph graph = new EulerianGraph(edges, n);
         // check if the graph is connected or not and
         // if graph is not connected then it does not have Euler Circuits
         boolean[] visited = new boolean[n];
@@ -44,7 +44,7 @@ public class EulerianGraph {
     }
     //by use Depth First Search reference from
     //https://www.hackerearth.com/practice/algorithms/graphs/depth-first-search/tutorial/
-    public static boolean isConnected(Graph graph, int currentVertex,boolean[] visited)
+    public static boolean isConnected(EulerianGraph graph, int currentVertex,boolean[] visited)
     {
         //mark the current as true visited
         visited[currentVertex] = true;
@@ -64,7 +64,7 @@ public class EulerianGraph {
         return true;
     }
     // check the graph has euler circuits or not
-    public static int isEulerian(Graph graph, int n){
+    public static int isEulerian(EulerianGraph graph, int n){
         // to count how many odd degree
         int  OddDegree = 0;
         for (int i = 0; i < n; i++){
@@ -76,7 +76,7 @@ public class EulerianGraph {
         // otherwise it does not has euler circuits
     }
     // this function is use to find the euler circuits
-    public static void Find(Graph graph,int currentVertex,List<Integer> path){
+    public static void Find(EulerianGraph graph,int currentVertex,List<Integer> path){
         path.add(currentVertex);
         //check the next vertex is exist or not
         if (graph.adjList.get(currentVertex).size() != 0 ){
@@ -87,7 +87,7 @@ public class EulerianGraph {
         else{System.out.println(path);}
     }
     // this function is use to find the euler path and the odd degree is 2
-    public static void Find(Graph graph,int currentVertex,List<Integer> path,int lastVertex){
+    public static void Find(EulerianGraph graph,int currentVertex,List<Integer> path,int lastVertex){
         path.add(currentVertex);
         if (graph.adjList.get(lastVertex).size() == 1 && graph.adjList.get(currentVertex).size()>1){
             //check the next vertex is exist or not
@@ -110,7 +110,7 @@ public class EulerianGraph {
     }
     //if graph has odd degree then need to find the
     //if all the degree is even then start from 0
-    public static List<Integer> findOddDegree(Graph graph,int n){
+    public static List<Integer> findOddDegree(EulerianGraph graph,int n){
         List<Integer> oddDegree = new ArrayList<>();
         for (int i = 0; i < n; i++){
             if(graph.adjList.get(i).size()%2!=0){oddDegree.add(i);}
@@ -118,7 +118,7 @@ public class EulerianGraph {
         return oddDegree;
     }
     //cope the graph without walked edge
-    public static Graph copyGraph(Graph graph,int currentVertex,int nextVertex){
+    public static EulerianGraph copyGraph(EulerianGraph graph,int currentVertex,int nextVertex){
         int flag = 0;
         for (int x = 0;x < graph.adjList.get(currentVertex).size();x++){
             if (nextVertex == graph.adjList.get(currentVertex).get(x)){
@@ -136,12 +136,11 @@ public class EulerianGraph {
         return graph;
     }
 }
-
-class Graph{
+class EulerianGraph{
     // A list of lists to represent an adjacency list
     List<List<Integer>> adjList = null;
     // Constructor
-    Graph(List<Edge> edges, int n)
+    EulerianGraph(List<Edge> edges, int n)
     {
         adjList = new ArrayList<>();
         for (int i = 0; i < n; i++) {
@@ -157,7 +156,6 @@ class Graph{
         }
     }
 }
-
 class Edge {
     int start, dest;
     public Edge(int source, int end)
