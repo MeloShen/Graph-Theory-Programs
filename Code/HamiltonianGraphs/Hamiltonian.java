@@ -5,7 +5,6 @@ import java.util.List;
 
 public class Hamiltonian {
     public static void main(String[] args) {
-
         // List of graph edges as per the above diagram
         // it need to put all the vertex
         List<Edge> edges = Arrays.asList(
@@ -24,7 +23,7 @@ public class Hamiltonian {
         // construct graph
         HamiltonianGraph graph = new HamiltonianGraph(edges, vertex);
         printMatrix(graph,vertex);
-        DoubleLinkedList path = new DoubleLinkedList<>();
+        DoubleLinkedList<Object> path = new DoubleLinkedList<>();
 
 
         findMaxPath(path,edges);
@@ -102,7 +101,7 @@ public class Hamiltonian {
         int currentVertex = (int) path.findHead();
         for (Edge edge:edges){
             //make sure the vertex not already in the list
-            if(currentVertex == edge.start && !path.has(edge.dest) ){
+            if(currentVertex == edge.start && path.has(edge.dest)){
                 path.addHead(edge.dest);
                 insertHead(edges,path);
             }
@@ -116,7 +115,7 @@ public class Hamiltonian {
         int currentVertex = (int) path.findTail();
         for (Edge edge:edges){
             //make sure the vertex not already in the list
-            if(currentVertex == edge.start && !path.has(edge.dest) ){
+            if(currentVertex == edge.start && path.has(edge.dest)){
                 path.addTail(edge.dest);
                 insertTail(edges,path);
             }
@@ -124,7 +123,7 @@ public class Hamiltonian {
     }
 }
 class HamiltonianGraph{
-    int array[][];
+    int[][] array;
     // A list of lists to represent an array
     // Constructor
     HamiltonianGraph(List<Edge> edges, int n)

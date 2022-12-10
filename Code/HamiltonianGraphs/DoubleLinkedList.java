@@ -1,10 +1,8 @@
 package Code.HamiltonianGraphs;
 
 public class DoubleLinkedList<T> {
-    private Node<T> head;
-
-    private Node<T> tail;
-
+    private final Node<T> head;
+    private final Node<T> tail;
     //this is the Constructor of the double linked list
     //every node has two pin connect to the next and the prev
     public DoubleLinkedList(){
@@ -16,9 +14,9 @@ public class DoubleLinkedList<T> {
     //add a node after head
     public void addHead(T key){
         //creat a new node
-        Node node = new Node<>(key);
+        Node<T> node = new Node<>(key);
         //save the odd node after head
-        Node prevNode = this.head.next;
+        Node<T> prevNode = this.head.next;
         //connect new node before odd node
         prevNode.prev = node;
         //connect head with new node
@@ -30,9 +28,9 @@ public class DoubleLinkedList<T> {
     //add node before tail
     public void addTail(T key){
         //creat a new node
-        Node node = new Node<>(key);
+        Node<T> node = new Node<>(key);
         //save the odd node before tail
-        Node prevNode = this.tail.prev;
+        Node<T> prevNode = this.tail.prev;
         //connect new node after odd node
         prevNode.next = node;
         //connect new node with tail
@@ -43,25 +41,25 @@ public class DoubleLinkedList<T> {
     }
     //find the node after head
     public T findHead(){
-        Node current = this.head.next;
-        return (T) current.key;
+        Node<T> current = this.head.next;
+        return current.key;
     }
     //find the node before tail
     public T findTail(){
-        Node current = this.tail.prev;
-        return (T) current.key;
+        Node<T> current = this.tail.prev;
+        return current.key;
     }
     //find the node before the node inputed
     public T findPrev(T key){
-        Node current = this.tail.prev;
+        Node<T> current = this.tail.prev;
         while(current.key != key && current.key != null) {
             current = current.prev;
         }
-        return (T) current.key;
+        return current.key;
     }
     //print the node in the link list
     public void print(){
-        Node current = this.head.next;
+        Node<T> current = this.head.next;
         while (current.key != null ){
             System.out.print(current.key);
             System.out.print(" ");
@@ -71,26 +69,26 @@ public class DoubleLinkedList<T> {
     }
     //check is the input node already in the list
     public boolean has(T key){
-        Node current = this.head.next;
+        Node<T> current = this.head.next;
         while(current.key != null){
             if(current.key.equals(key)){
-                return true;
+                return false;
             }
             current = current.next;
         }
-        return false;
+        return true;
     }
     //after find the key need connect to the head
     public void changeHead(T key){
-        Node headNode = this.head.next;
-        Node keyNode = this.tail.prev;
+        Node<T> headNode = this.head.next;
+        Node<T> keyNode = this.tail.prev;
         System.out.print(keyNode.key);
         //find the node same to inputted key
         while(keyNode.key.equals(key)){
             keyNode = keyNode.prev;
         }
         //remember the node before key node
-        Node prevKeyNode = keyNode.prev;
+        Node<T> prevKeyNode = keyNode.prev;
         //let head connect the node before key node
         this.head.next = prevKeyNode;
         prevKeyNode.next = head;
@@ -98,7 +96,7 @@ public class DoubleLinkedList<T> {
         headNode.prev = keyNode;
         keyNode.prev = head;
         //the code below is used to print the list
-        Node current = this.head.next;
+        Node<T> current = this.head.next;
         //because of disconnect the key node and prev key node
         //then prev key node has a next pin connect to head and
         //head has a next pin connect to prev key node and
@@ -126,8 +124,8 @@ public class DoubleLinkedList<T> {
     //Constructor for the node
     private class Node<T>{
         private T key;
-        private Node next;
-        private Node prev;
+        private DoubleLinkedList<T>.Node<T> next;
+        private DoubleLinkedList<T>.Node<T> prev;
         private Node(T key){
             this.key = key;
         }
