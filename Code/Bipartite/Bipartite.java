@@ -7,15 +7,15 @@ import java.util.List;
 public class Bipartite {
 
     public static void main(String[] args) {
-//        List<Edge> edges = Arrays.asList(
-//                new Edge(0, 2), new Edge(0, 3),
-//                new Edge(1, 3), new Edge(1, 4),
-//                new Edge(2, 0), new Edge(2, 4),
-//                new Edge(3, 0), new Edge(3, 1),
-//                new Edge(4, 1), new Edge(4, 2)
-//        );
-//        int n = 5;
         List<Edge> edges = Arrays.asList(
+                new Edge(0, 2), new Edge(0, 3),
+                new Edge(1, 3), new Edge(1, 4),
+                new Edge(2, 0), new Edge(2, 4),
+                new Edge(3, 0), new Edge(3, 1),
+                new Edge(4, 1), new Edge(4, 2)
+        );
+        int n = 5;
+        List<Edge> edges2 = Arrays.asList(
                 new Edge(0,1),new Edge(0,7),new Edge(0,4),
                 new Edge(1,0),new Edge(1,2),new Edge(1,3),
                 new Edge(2,1),
@@ -25,19 +25,19 @@ public class Bipartite {
                 new Edge(6,4),
                 new Edge(7,0)
         );
-        int n = 8;
-//                List<Edge> edges = Arrays.asList(
-//                new Edge(0,1),new Edge(0,2),new Edge(0,3),new Edge(0,4),
-//                new Edge(1,0),new Edge(1,6),
-//                new Edge(2,0),
-//                new Edge(3,0),
-//                new Edge(4,0),new Edge(4,5),
-//                new Edge(5,4),new Edge(5,6),
-//                new Edge(6,1),new Edge(6,5)
-//        );
-//        int n = 7;
-        // construct graph
-        bipartiteGarph graph = new bipartiteGarph(edges, n);
+        int n2 = 8;
+                List<Edge> edges3 = Arrays.asList(
+                new Edge(0,1),new Edge(0,2),new Edge(0,3),new Edge(0,4),
+                new Edge(1,0),new Edge(1,6),
+                new Edge(2,0),
+                new Edge(3,0),
+                new Edge(4,0),new Edge(4,5),
+                new Edge(5,4),new Edge(5,6),
+                new Edge(6,1),new Edge(6,5)
+        );
+        int n3 = 7;
+         //construct graph
+        bipartiteGarph graph = new bipartiteGarph(edges3, n3);
         graph.print();
         boolean[] visited = new boolean[graph.vertex];
         if(!isConnected(graph, 0, visited)){
