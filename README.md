@@ -8,4 +8,5 @@ Graph theory including: admissible degree sequences, Eulerian graphs, Hamiltonia
 
 * [Admissible Degree Sequences](https://github.com/MeloShen/Graph-Theory-Programs/blob/main/Code/Admissable/Admissable.md)
 * [Bipartite Graph](https://github.com/MeloShen/Graph-Theory-Programs/blob/main/Code/Bipartite/Bipartite.md)
+* [Eulerian Graph](https://github.com/MeloShen/Graph-Theory-Programs/blob/main/Code/EulerianGraph/EulerianGraph.md)
 * [Sloving Knapsack Problem](https://github.com/MeloShen/Graph-Theory-Programs/blob/main/Code/KnapsackProblem/knapsack%20problem.md)
