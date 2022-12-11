@@ -1,5 +1,86 @@
 
 # Sloving Knapsack Problem 
+![Knapsack Problem](data:image/jpeg;base64,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)
 
-The knapsack problem is a problem in combinatorial optimization. Given a set of items, each with a weight and a value, the problem is to determine the number of each item included in a collection so that the total weight is less than or equal to a given limit and the total value is as large as possible. It derives its name from the problem faced by someone who is constrained by a fixed-size knapsack and must fill it with the most valuable items. The problem often arises in resource allocation where the decision-makers must choose from a set of non-divisible projects or tasks under a fixed budget or time constraint, respectively. (Knapsack problem, 2022)
+## What is knapsack problem 
+The knapsack problem is a problem in combinatorial optimization.
+
+## How to understand 
+    1. Set of items, each with a weight and a value.
+    2. A fixed capacity.
+    3. Find a combination.
+    4. The total weight is less than or equal to a given limit.
+    5. The total value is as large as possible. 
+
+## Dynamic programming
+Consider how many bags there are and the remaining weight that the bag can store. 
+
+## Easy problem
+    WEIGHT: W = {3,4,5,6}
+    VALUE:  V = {2,6,4,6}
+    CAPACITY = 8
+    ITEM = 4
+
+## Sloving
+If the call to B[i][j] is by selecting the largest possible value in the bag {1, 2, ..., i} with weight limit j. The maximum value is B[n][M] when selected among n packs with a weight limit of M.
+
+### For the B[i][j] has these selections
+In the case of simply having only 1 package to choose. You calculate B[1][j] for every j: which means the maximum weight of the knapsack ≥ the weight of the 1st package:
+
+    B[1][j] = W[1]
+
+If package i is not selected, B[i][j] is the maximum possible value by selecting among packages {1, 2, …, i – 1} with weight limit of j. You have:
+
+    B[i][j] = B[i – 1][j]
+
+If package i is selected (of course only consider this case when W[i] ≤ j) then B[i][j] is equal to the value V[i] of package i plus the maximum value can be obtained by selecting among packages {1, 2, …, i – 1} with weight limit (j – W[i]). That is, in terms of the value you have:
+
+    B[i][j] = V[i] + B[i – 1][j – W[i]]
+
+Now we have the recursive formula as follows:
+
+    B[i][j]= max(B[i – 1][j], V[i]+B[i – 1][j – W[i]]
+
+### Build an option table from the above recursive formula
+
+![Knapsack Problem image 1](https://raw.githubusercontent.com/MeloShen/Graph-Theory-Programs/main/image/KnapsackProblem/image1.png)
+
+![Knapsack Problem image 2](https://raw.githubusercontent.com/MeloShen/Graph-Theory-Programs/main/image/KnapsackProblem/image2.png)
+
+![Knapsack Problem image 3](https://raw.githubusercontent.com/MeloShen/Graph-Theory-Programs/main/image/KnapsackProblem/image3.png)
+
+![Knapsack Problem image 3](https://raw.githubusercontent.com/MeloShen/Graph-Theory-Programs/main/image/KnapsackProblem/image4.png)
+
+### How to get the answer
+
+#### Steps for tracing:
+    1.Starting from i = n, j = M 
+    2.Look in column j, up from bottom, you find the line i such that B[i][j] > B[i – 1][j]
+    3.j = B[i][j] – W[i]. If j > 0, go to step 2, otherwise go to step 4
+    4.Based on the table of options to print the selected packages. 
+    
+### In the given case can get 
+    1. I = 4 j =8, m[4][8] = 8
+    2. based on step 2 can get b[2][8] > b[2-1][8], so I =2. 
+    3. by step 3 can get j = b[2][8] - w[2] = 8 – 4 = 4.
+    4. The item has weight 4 with value 6. 
+    5. Now the I = 2 and j = 4.
+    6. Next do the step 2 b[1][4] > b[0][4], I = 1, j = b[1][4] – w[1] = 2 – 2 = 0.
+    7. the item is weight 3 with value 2. 
+
+### Answer
+    Item 1: weight 3, value 2
+    Item 2: weight 4, value 6
+    Total weight = 7
+    total value = 8.
+
+## References
+[0-1 Knapsack Problem. (2021, 11 09). ](https://www.interviewbit.com/blog/0-1-knapsack-problem/)
+
+[Knapsack problem. (2022, 05 18). ]( https://en.wikipedia.org/wiki/Knapsack_problem)
+
+[ 0/1 Knapsack Problem Fix using Dynamic Programming Example.](https://www.guru99.com/)
+
+
+
 
