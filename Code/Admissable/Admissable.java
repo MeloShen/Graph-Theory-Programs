@@ -7,13 +7,14 @@ public class Admissable {
         System.out.println("This is the first set:");
         int[] sequence1 = {5,1,1,1,0};
         check(sequence1);
+        System.out.println();
         System.out.println("This is the second set:");
         int[] sequence2 = {1,1,1,1,1,1,1,0};
         check(sequence2);
+        System.out.println();
         System.out.println("This is the third set:");
         int[] sequence3 = {5,4,2,2,2,2,2,1};
         check(sequence3);
-
     }
     //find the sequence is admissable or not
     public static void check(int[] sequence) {
