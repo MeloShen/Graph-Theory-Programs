@@ -22,6 +22,9 @@ Consider how many bags there are and the remaining weight that the bag can store
     ITEM = 4
 
 ## Sloving
+
+[Java Code](https://github.com/MeloShen/Graph-Theory-Programs/blob/main/Code/KnapsackProblem/Knapsack_DP.java)
+
 If the call to B[i][j] is by selecting the largest possible value in the bag {1, 2, ..., i} with weight limit j. The maximum value is B[n][M] when selected among n packs with a weight limit of M.
 
 ### For the B[i][j] has these selections
@@ -75,6 +78,7 @@ Now we have the recursive formula as follows:
     total value = 8.
 
 ## References
+
 [0-1 Knapsack Problem. (2021, 11 09). ](https://www.interviewbit.com/blog/0-1-knapsack-problem/)
 
 [Knapsack problem. (2022, 05 18). ]( https://en.wikipedia.org/wiki/Knapsack_problem)
