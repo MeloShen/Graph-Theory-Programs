@@ -12,3 +12,4 @@ Graph theory including: admissible degree sequences, Eulerian graphs, Hamiltonia
 * [Measurements Graph](https://github.com/MeloShen/Graph-Theory-Programs/blob/main/Code/GraphMeasurements/MeasurementsGraph.java)
 * [Hamiltonian Graph](https://github.com/MeloShen/Graph-Theory-Programs/blob/main/Code/HamiltonianGraphs/Hamiltonian.java)
 * [Sloving Knapsack Problem](https://github.com/MeloShen/Graph-Theory-Programs/blob/main/Code/KnapsackProblem/knapsack%20problem.md)
+* [Warshall Algortihm](https://github.com/MeloShen/Graph-Theory-Programs/blob/main/Code/WarshallAlgortihm/WarshallAlgortihm.md)
