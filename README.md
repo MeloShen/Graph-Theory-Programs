@@ -27,5 +27,3 @@ I learned a lot of mathematical knowledge in this project. I used my weak progra
 
 - [MIT](https://choosealicense.com/licenses/mit/)
 
-
-![LOGO](https://raw.githubusercontent.com/MeloShen/MeloShen/main/_image/Logo_black.jpg)
